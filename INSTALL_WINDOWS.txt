@@ -1,0 +1,12 @@
+INSURANCE DOCUMENT EXPLORER V11.2 STYLED SOURCE FIX
+
+1. Stop all Streamlit terminals with Ctrl+C.
+2. Copy ALL files from this ZIP into your Insurance_Streamlit folder.
+   Replace existing app.py, live_lookup.py and all existing Python files.
+3. From the Insurance_Streamlit folder, run:
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m streamlit cache clear
+   .\.venv\Scripts\python.exe -m streamlit run app.py
+4. Confirm: Running build: V11.2 STYLED SOURCE FIX
+5. Upload Student-Group-Insurance-Policy-2026.pdf and click Extract documents.
+6. Ask "name of the scheme". Expected page: 3.

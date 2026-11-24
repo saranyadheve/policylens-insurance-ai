@@ -1,0 +1,3 @@
+-r requirements.txt
+# Install paddlepaddle following https://www.paddlepaddle.org.cn/en/install/quick
+paddleocr>=3.0,<4

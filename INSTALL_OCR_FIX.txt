@@ -1,0 +1,32 @@
+PolicyLens V13.1 — OCR Path Fix (based on your uploaded project)
+
+Root cause:
+- The previous app.py configured pytesseract at the END of the file, AFTER the PDF was processed.
+- If PDF extraction failed, Streamlit st.stop() prevented that configuration from ever running.
+- A one-off python -c test sets Tesseract only for that one process; it does not configure Streamlit.
+
+This package:
+- Configures user-local Tesseract before extraction starts.
+- Locates %LOCALAPPDATA%\Tesseract-OCR\tesseract.exe (your Windows installer location).
+- Supports TESSERACT_CMD environment override and other normal install locations.
+- Prevents a missing OCR executable from crashing the entire application.
+- Preserves existing insurance field extraction and UI design.
+- Excludes .venv; keep your existing virtual environment.
+
+Windows install:
+1. Stop all running Streamlit terminals with Ctrl+C (close both ports 8501 and 8502 if both running).
+2. Extract this ZIP and COPY ITS CONTENTS (app.py, ocr_runtime.py, app_pipeline.py, extractor.py, and other existing files) into:
+   C:\Users\Saranyadheve\Desktop\Insurance_Streamlit
+   Choose Replace existing files. Do NOT delete .venv.
+3. In VS Code PowerShell:
+   cd C:\Users\Saranyadheve\Desktop\Insurance_Streamlit
+   .\.venv\Scripts\python.exe -m streamlit cache clear
+   .\.venv\Scripts\python.exe -m streamlit run app.py --server.port 8501
+4. On sidebar check: V13.1 — OCR PATH FIX
+   OCR: Tesseract found at C:\Users\Saranyadheve\AppData\Local\Tesseract-OCR\tesseract.exe
+5. Re-upload Bike insurance.pdf and retest.
+
+Optional independent test:
+.\.venv\Scripts\python.exe test_ocr_path.py
+
+Important: This fixes the Tesseract PATH/error. It does not guarantee that all PDF fields are extracted correctly; manual evidence review is still recommended.

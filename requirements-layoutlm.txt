@@ -1,0 +1,4 @@
+-r requirements.txt
+# Optional research only: no pretrained LayoutLMv3 base model can solve arbitrary extraction without training.
+transformers>=4.40
+torch>=2.2
